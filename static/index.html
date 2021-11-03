@@ -40,7 +40,6 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
                 if (xhr.status==200) {
                     //XXX: parse some JSON from the request!
                     //XXX: Pass the data to the callback!
-                    // https://stackoverflow.com/questions/46751610/difference-between-xhr-response-and-xhr-responsetext-on-xmlhttprequest
                     var response = JSON.parse(xhr.response);
                     callback(response);
                 }
@@ -66,7 +65,7 @@ world = {};
 function drawCircle(context,entity) {
     with(context) {
         beginPath();              
-        lineWidth = 3;
+        lineWidth = 7;
         var x = entity["x"];
         var y = entity["y"];
         //moveTo(x,y);
@@ -260,16 +259,16 @@ mouse.mousedowners.push(function(x,y,clicked,e) {
     // https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj, credit to Akhil Sai from May 12,2019
     const color = Math.floor(Math.random()*16777215).toString(16);
     let randomcolor = '#'+color;
-    addEntityWithoutName({'x':x,'y':y,'colour':randomcolor, 'radius':20});
+    addEntityWithoutName({'x':x,'y':y,'colour':randomcolor, 'radius':30});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red', 'radius':15});
+    addEntityWithoutName({'x':x,'y':y,'colour':'red', 'radius':25});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
     addEntityWithoutName({'x':x,'y':y,'colour':'green',
-                          'radius':8});
+                          'radius':10});
 });
 
 function update() {

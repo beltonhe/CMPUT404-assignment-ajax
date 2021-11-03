@@ -82,7 +82,6 @@ def update(entity):
     '''update the entities via this interface'''
     body = flask_post_json()
     myWorld.set(entity, body)
-    ##https://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify
     return flask.jsonify(myWorld.get(entity))
 
 @app.route("/world", methods=['POST','GET'])    
