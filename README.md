@@ -18,6 +18,9 @@ Reference
 * https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest & https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
 * https://stackoverflow.com/questions/6418220/javascript-send-json-object-with-ajax by https://stackoverflow.com/users/7399080/kinrany & https://stackoverflow.com/users/804091/nathan-romano
 * https://www.w3schools.com/tags/canvas_linecap.asp
+* https://www.w3schools.com/tags/canvas_shadowblur.asp
+* https://www.w3schools.com/tags/canvas_createlineargradient.asp
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
 
 Collaboration
 ========================

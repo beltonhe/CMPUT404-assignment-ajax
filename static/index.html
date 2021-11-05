@@ -69,8 +69,15 @@ function drawCircle(context,entity) {
         var x = entity["x"];
         var y = entity["y"];
         //moveTo(x,y);
+        // https://www.w3schools.com/tags/canvas_addcolorstop.asp
+        var grd = createLinearGradient(0, 0, 175, 0);
+        grd.addColorStop(0, "white");
+        grd.addColorStop(0.5, "blue");        
+        grd.addColorStop(1, "black");
         fillStyle = entity["colour"];
-        strokeStyle = fillStyle;
+        strokeStyle = grd;
+        shadowBlur = 10;
+        shadowColor = "lightgrey";
         linecap = "round"
         arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
         fill();
@@ -146,7 +153,7 @@ function addEntity(entity, data) {
     world[entity] = data;
     //drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-    sendJSONXMLHTTPRequest("/entity/" + entity, data, function(response){});
+    sendJSONXMLHTTPRequest("http://" + host +"/entity/" + entity, data, function(response){});
     drawNextFrame();
 
 }
@@ -260,11 +267,11 @@ mouse.mousedowners.push(function(x,y,clicked,e) {
     // https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj, credit to Akhil Sai from May 12,2019
     const color = Math.floor(Math.random()*16777215).toString(16);
     let randomcolor = '#'+color;
-    addEntityWithoutName({'x':x,'y':y,'colour':randomcolor, 'radius':30});
+    addEntityWithoutName({'x':x,'y':y,'colour':randomcolor, 'radius':40});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red', 'radius':15});
+    addEntityWithoutName({'x':x,'y':y,'colour':'red', 'radius':20});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
@@ -275,7 +282,7 @@ mouse.mousedraggers.push(function(x,y,clicked,e) {
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
     drawFrame();
-    sendJSONXMLHTTPRequest('/world', null, function(response) {
+    sendJSONXMLHTTPRequest("http://" + host +'/world', null, function(response) {
         world = response;
         drawNextFrame();
     });
